@@ -1,0 +1,27 @@
+{
+  "name": "afip",
+  "version": "0.0.1",
+  "description": "Argentina AFIP Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbezi/afip.git"
+  },
+  "keywords": [
+    "argentina",
+    "afip",
+    "client"
+  ],
+  "author": "Norberto Bezi <norberto.bezi@gmail.com>",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/nbezi/afip/issues"
+  },
+  "homepage": "https://github.com/nbezi/afip#readme",
+  "dependencies": {
+    "soap": "^0.15.0"
+  }
+}
