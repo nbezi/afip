@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/nbezi/afip#readme",
   "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
     "soap": "^0.15.0"
   }
 }
