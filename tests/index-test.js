@@ -10,8 +10,8 @@ var endpoints = {
 }
 
 describe('Wsfev1Client instantiation', function() {
-  it('client() should return instance of Wsfev1Client', function(done) {
-    afip.client({wsfeVersion: 'wsfev1'}, (err, client) => {
+  it('wsfe() should return instance of Wsfev1Client', function(done) {
+    afip.wsfe({wsfeVersion: 'wsfev1', token: 'test', sign: 'test', cuit: '20123123129'}, (err, client) => {
     	if (err) expect(client).to.equal('');
     	expect(err).to.equal(false);
     	expect(client.getWsfeVersion()).to.equal('wsfev1');
@@ -21,8 +21,8 @@ describe('Wsfev1Client instantiation', function() {
 });
 
 describe('Wsfev1Client production property', function() {
-  it('client() production default to false', function(done) {
-    afip.client({wsfeVersion: 'wsfev1'}, (err, client) => {
+  it('wsfe() production default to false', function(done) {
+    afip.wsfe({wsfeVersion: 'wsfev1', token: 'test', sign: 'test', cuit: '20123123129'}, (err, client) => {
     	if (err) expect(client).to.equal('');
     	expect(err).to.equal(false);
     	expect(client.isProduction()).to.equal(false);
@@ -30,8 +30,8 @@ describe('Wsfev1Client production property', function() {
 	});
   });
 
-  it('client() production set to false', function(done) {
-    afip.client({wsfeVersion: 'wsfev1', production: false}, (err, client) => {
+  it('wsfe() production set to false', function(done) {
+    afip.wsfe({wsfeVersion: 'wsfev1', token: 'test', sign: 'test', cuit: '20123123129', production: false}, (err, client) => {
     	if (err) expect(client).to.equal('');
     	expect(err).to.equal(false);
     	expect(client.isProduction()).to.equal(false);
@@ -39,8 +39,8 @@ describe('Wsfev1Client production property', function() {
     });
   });
 
-  it('client() production set to true', function(done) {
-    afip.client({wsfeVersion: 'wsfev1', production: true}, (err, client) => {
+  it('wsfe() production set to true', function(done) {
+    afip.wsfe({wsfeVersion: 'wsfev1', token: 'test', sign: 'test', cuit: '20123123129', production: true}, (err, client) => {
     	if (err) expect(client).to.equal('');
     	expect(err).to.equal(false);
     	expect(client.isProduction()).to.equal(true);
@@ -50,8 +50,8 @@ describe('Wsfev1Client production property', function() {
 });
 
 describe('Wsfev1Client get Endpoints property', function() {
-  it('client() production to false, homolog expected', function(done) {
-    afip.client({wsfeVersion: 'wsfev1'}, (err, client) => {
+  it('wsfe() production to false, homolog expected', function(done) {
+    afip.wsfe({wsfeVersion: 'wsfev1', token: 'test', sign: 'test', cuit: '20123123129'}, (err, client) => {
     	if (err) expect(client).to.equal('');
     	expect(err).to.equal(false);
     	expect(client.getEndpoint()).to.equal(endpoints.homolog);
@@ -60,13 +60,24 @@ describe('Wsfev1Client get Endpoints property', function() {
     });
   });
 
-  it('client() production set to true, production expected', function(done) {
-    afip.client({wsfeVersion: 'wsfev1', production: true}, (err, client) => {
+  it('wsfe() production set to true, production expected', function(done) {
+    afip.wsfe({wsfeVersion: 'wsfev1', token: 'test', sign: 'test', cuit: '20123123129', production: true}, (err, client) => {
     	if (err) expect(client).to.equal('');
     	expect(err).to.equal(false);
     	expect(client.getEndpoint()).to.equal(endpoints.production);
 	    expect(client.getWSDLEndpoint()).to.equal(endpoints.productionWSDL);
     	done();
+    });
+  });
+});
+
+describe('WsaaClient instantiation', function() {
+  it('wsaa() should return instance of Wsfev1Client', function(done) {
+    afip.wsaa({service: 'wsfe'}, (err, client) => {
+      if (err) expect(client).to.equal('');
+      expect(err).to.equal(false);
+      client.createTRA();
+      done();
     });
   });
 });

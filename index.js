@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.client = (options, callback) => {
+module.exports.wsfe = (options, callback) => {
 	if (!options) {
 		options = {};
 	}
@@ -13,3 +13,6 @@ module.exports.client = (options, callback) => {
 	clientInstance.setWsfeVersion(options.wsfeVersion);
 }
 
+module.exports.wsaa = (options, callback) => {
+	return require(__dirname + '/lib/wsaa').getInstance(options, callback);
+}
