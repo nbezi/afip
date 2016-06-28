@@ -1,6 +1,6 @@
 'use strict';
 
-var wsaa = require(__dirname + '/lib/wsaa');
+var wsaa = require('./lib/wsaa');
 
 var afip = {
 	wsbusiness: function(options, callback) {
@@ -9,14 +9,15 @@ var afip = {
 		}
 
 		if (!options.serviceClass) {
-			options.serviceClass = 'wsfev1';
+			callback(new Error("Option 'serviceClass' is required"));
+			return;
 		}
 
-		var clientInstance = require(__dirname + '/lib/' + options.serviceClass).getInstance(options, callback);
+		var clientInstance = require('./lib/' + options.serviceClass).getInstance(options, callback);
 		clientInstance.setWsVersion(options.serviceClass);
 	},
 	wsaa: function(options, callback) {
-		return wsaa.getInstance(options, callback);
+		wsaa.getInstance(options, callback);
 	},
 	initSession: function(options, callback) {
 		this.wsaa(options, (err, wsaa) => {
