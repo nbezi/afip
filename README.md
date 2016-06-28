@@ -52,27 +52,27 @@ The `callback` function (mandatory) will be called once the soap client is ready
 The callback will receive the following parameters:
 
 1. error: and error object in case something went wrong
-2. client: [SOAP Client](https://www.npmjs.com/package/soap#client) instance
+2. businessWS: The business ws client object that have a connected [SOAP Client](https://www.npmjs.com/package/soap#client) instance
 
 
 #### Usage
 
-```node
+```javascript
 var afip = require('afip');
 
 afip.initSession({
-	service: 'wsfe',
-	serviceClass: 'wsfev1',
-	productionCertFilename: __dirname + '/wsaa/production.cert',
-	productionKeyFilename: __dirname + '/wsaa/production.key',
-	homologCertFilename: __dirname + '/wsaa/homolog.cert',
-	homologKeyFilename: __dirname + '/wsaa/homolog.key',
-	production: false // Optional, default: false
-}, (err, client) => {
+  service: 'wsfe',
+  serviceClass: 'wsfev1',
+  productionCertFilename: __dirname + '/wsaa/production.cert',
+  productionKeyFilename: __dirname + '/wsaa/production.key',
+  homologCertFilename: __dirname + '/wsaa/homolog.cert',
+  homologKeyFilename: __dirname + '/wsaa/homolog.key',
+  production: false // Optional, default: false
+}, (err, wsfe) => {
   // TODO: Place your code here...
   
   // Example: requesting a invoice
-  client.FECAESolicitar(
+  wsfe.soapClient.Service.ServiceSoap12.FECAESolicitar(
     {/* TODO: Your Options, see documentation at ./docs folder */}, 
     (err, result, raw, soapHeader) => {
       // TODO: Check if the invoice is ok and whatever...
@@ -80,6 +80,6 @@ afip.initSession({
   );
   
   // Print the client and check what methods do you have available...
-	console.log(client);
+  console.log(wsfe.soapClient.Service);
 });
 ```
