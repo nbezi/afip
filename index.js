@@ -1,18 +1,38 @@
 'use strict';
 
-module.exports.wsfe = (options, callback) => {
-	if (!options) {
-		options = {};
-	}
+var wsaa = require(__dirname + '/lib/wsaa');
 
-	if (!options.wsfeVersion) {
-		options.wsfeVersion = 'wsfev1';
-	}
+var afip = {
+	wsbusiness: function(options, callback) {
+		if (!options) {
+			options = {};
+		}
 
-	var clientInstance = require(__dirname + '/lib/' + options.wsfeVersion).getInstance(options, callback);
-	clientInstance.setWsfeVersion(options.wsfeVersion);
+		if (!options.serviceClass) {
+			options.serviceClass = 'wsfev1';
+		}
+
+		var clientInstance = require(__dirname + '/lib/' + options.serviceClass).getInstance(options, callback);
+		clientInstance.setWsVersion(options.serviceClass);
+	},
+	wsaa: function(options, callback) {
+		return wsaa.getInstance(options, callback);
+	},
+	initSession: function(options, callback) {
+		this.wsaa(options, (err, wsaa) => {
+			if (err) callback(err);
+			else wsaa.getCredentials((err, data) => {
+				if (err) {
+					callback(err);
+					return;
+				}
+				options.token = data.token;
+				options.sign = data.sign;
+				options.cuit = data.cuit;
+				this.wsbusiness(options, callback);
+			});
+		});
+	}
 }
 
-module.exports.wsaa = (options, callback) => {
-	return require(__dirname + '/lib/wsaa').getInstance(options, callback);
-}
+module.exports = afip;
