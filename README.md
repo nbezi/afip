@@ -32,14 +32,14 @@ The `options` argument allows you to customize the client with the following pro
 - homologPassphrase: `Optional, default empty` passphrase used to generate the homolog key file
 - production: `Optional, default: false`  whether use production or homolog condiguration
 
-#### callback
+#### Callback
 
-The `callback` function will be called call once the instance is created and it's mandatory.
+The `callback` function (mandatory) will be called once the soap client is ready.
 
 The callback will receive the following parameters:
 
 1. error: and error object in case something went wrong
-2. client: [SOAP Client](https://www.npmjs.com/package/soap#client)) instance
+2. client: [SOAP Client](https://www.npmjs.com/package/soap#client) instance
 
 #### Usage
 
