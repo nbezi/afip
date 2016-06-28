@@ -1,9 +1,11 @@
 {
   "name": "afip",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Argentina AFIP Client",
   "main": "index.js",
-  "os": ["linux"],
+  "os": [
+    "linux"
+  ],
   "engines": {
     "node": ">=4.x"
   },
