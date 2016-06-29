@@ -1,6 +1,6 @@
 {
   "name": "afip",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Argentina AFIP Client",
   "main": "index.js",
   "os": [
