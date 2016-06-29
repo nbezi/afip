@@ -1,23 +1,14 @@
 'use strict';
 
 var wsaa = require('./lib/wsaa');
+var wsservice = require('./lib/wsservice');
 
 var afip = {
 	wsbusiness: function(options, callback) {
-		if (!options) {
-			options = {};
-		}
-
-		if (!options.serviceClass) {
-			callback(new Error("Option 'serviceClass' is required"));
-			return;
-		}
-
-		var clientInstance = require('./lib/' + options.serviceClass).getInstance(options, callback);
-		clientInstance.setWsVersion(options.serviceClass);
+		var clientInstance = wsservice.getInstance(options || {}, callback);
 	},
 	wsaa: function(options, callback) {
-		wsaa.getInstance(options, callback);
+		wsaa.getInstance(options || {}, callback);
 	},
 	initSession: function(options, callback) {
 		this.wsaa(options, (err, wsaa) => {
