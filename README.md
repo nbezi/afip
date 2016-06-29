@@ -34,15 +34,15 @@ Starts a session with WSAA Afip and creates a Client for a given Business Servic
 
 The `options` argument allows you to customize the client with the following properties:
 
-- service: business service to authenticate to, possible values: wsfe
-- serviceClass: business service class to use, possible values: wsfev1
+- service: business service to authenticate to, possible values: Any related business service associated to the Cuit ie - wsfe
+- serviceClass: business service class to use, possible values: Any root path service ie - wsfev1
 - productionCertFilename: absolute location to your production cert file
 - productionKeyFilename:  absolute location to your production cert file
-- productionPassphrase: `Optional, default empty` passphrase used to generate the production key file
+- productionPassphrase: `Optional, default empty` - passphrase used to generate the production key file
 - homologCertFilename:  absolute location to your production cert file
 - homologKeyFilename:  absolute location to your production cert file
-- homologPassphrase: `Optional, default empty` passphrase used to generate the homolog key file
-- production: `Optional, default: false`  whether use production or homolog condiguration
+- homologPassphrase: `Optional, default empty` - passphrase used to generate the homolog key file
+- production: `Optional, default: false`  - whether use production or homolog condiguration
 
 
 #### Callback
