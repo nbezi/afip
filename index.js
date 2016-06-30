@@ -5,7 +5,7 @@ var wsservice = require('./lib/wsservice');
 
 var afip = {
 	wsbusiness: function(options, callback) {
-		var clientInstance = wsservice.getInstance(options || {}, callback);
+		wsservice.getInstance(options || {}, callback);
 	},
 	wsaa: function(options, callback) {
 		wsaa.getInstance(options || {}, callback);
